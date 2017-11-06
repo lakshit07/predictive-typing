@@ -12,14 +12,15 @@ Finally, a text editor with the predictive typing capabilities is developed.A su
 **Modules**  
 * *Module - 1*  
     *  Corpus data preprocessing (tokenization,stopword removal etc.) and implementation of few smoothing techniques  
-        * Implementation of remaining smoothing techniques and their comparison  
-        * *Module - 2*  
-            * Preparation of dataset for semantic similarity and finding the semantic similarity between two texts  
-                * Using semantic similarity for prediction, Text-editor implementation and comparison of both approaches.
+    * Implementation of remaining smoothing techniques and their comparison  
+* *Module - 2*  
+    * Preparation of dataset for semantic similarity and finding the semantic similarity between two texts  
+    * Using semantic similarity for prediction, Text-editor implementation and comparison of both approaches  
+    
 
-                **Team Members**:
-                1.  Adarsh Sanghai
-                2.  Amitojdeep Singh
-                3.  Anirudh Kumar Bansal
+>**Team Members**:  
+                1.  Adarsh Sanghai  
+                2.  Amitojdeep Singh  
+                3.  Anirudh Kumar Bansal  
                 4.  Lakshit Bhutani
 
