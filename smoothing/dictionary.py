@@ -14,6 +14,7 @@ def get_counts(foldername):
 				if word=='':
 					continue
 				unigram[word] += 1
+				config.total_unigrams += 1
 				if prev_word != '':
 					bigram[prev_word+' '+word] += 1
 				if prev2_word != '':
