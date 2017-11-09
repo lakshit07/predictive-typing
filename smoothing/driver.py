@@ -2,7 +2,9 @@ from dictionary import *
 from additive_smoothen import *
 from good_turing import *
 from jelinek_mercer import *
+from witten_bell import *
 from cond_prob import *
+from absolute_discounting import *
 import config
 import Queue,time
 from Queue import PriorityQueue
@@ -18,7 +20,12 @@ def predict(prev_words,method):
 			prob = good_turing(prev_words,word)
 		elif method=='jelinek mercer':
 			prob = jelinek_mercer(prev_words,word)
-
+		elif method=='witten bell':
+			prob = witten_bell(prev_words , word)
+		elif method == 'absolute discounting':
+			prob = absolute_discounting(prev_words, word)	
+		else:
+			pass
 		pq.put((-prob,word))
 
 	word_lst = []
@@ -40,18 +47,23 @@ def get_prediction(sentence,method):
 		prev_word = word
 
 start_time=time.time()
-get_counts("./data")
+get_counts("../data")
 print "Obtaining counts: ",time.time()-start_time," seconds"
 print "Voc size: ",config.voc_size
 sentence = "he has a phone pole sticking in his chest i think we dont need an autopsy"
 sentence = "these are the experiences that write our story and shape our lives" 
 print 'Additive smoothing'
-get_prediction(sentence,'additive')
+#get_prediction(sentence,'additive')
 print ''
 print 'Good Turing'
-get_prediction(sentence,'turing')
+#get_prediction(sentence,'turing')
 print ''
 print 'Jelinek-Mercer'
-get_prediction(sentence,'jelinek mercer')
-#print cond_prob(["at","a"],"baptist")
-#print count_unigram
+#get_prediction(sentence,'jelinek mercer')
+print ''
+print 'Witten Bell'
+#get_prediction(sentence, 'witten bell')
+print ''
+print 'Absolute Discounting'
+get_prediction(sentence, 'absolute discounting')
+

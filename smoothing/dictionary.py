@@ -17,8 +17,12 @@ def get_counts(foldername):
 				config.total_unigrams += 1
 				if prev_word != '':
 					bigram[prev_word+' '+word] += 1
+					if bigram[prev_word + ' ' + word] == 1:
+						count_distinct_uni[prev_word] += 1
 				if prev2_word != '':
 					trigram[prev2_word+' '+prev_word+' '+word] += 1
+					if trigram[prev2_word + ' ' + prev_word + ' ' + word] == 1:
+						count_distinct_bi[prev2_word + ' ' + prev_word] += 1
 				prev2_word = prev_word
 				prev_word = word
 		f.close()
