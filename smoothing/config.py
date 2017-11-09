@@ -10,3 +10,4 @@ count_unigram = defaultdict(lambda: 0)
 count_bigram = defaultdict(lambda: 0)
 count_trigram = defaultdict(lambda: 0)
 voc_size = 0
+total_unigrams = 0
