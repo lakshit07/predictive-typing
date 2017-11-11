@@ -49,13 +49,13 @@ def get_prediction(sentence,method):
 	return ans	
 
 
-def compute(method):
+def compute():
 	start_time=time.time()
 	get_counts("../data")
 	print("Obtaining counts: ",time.time()-start_time," seconds")
 	print("Voc size: ",config.voc_size)
-	sentence = "these are the experiences that write our story and shape our lives" 
-		
+	#sentence = "these are the experiences that write our story and shape our lives" 
+	'''	
 	if method=="additive":
 		return get_prediction(sentence,'additive')
 	elif method=="turing":
@@ -68,4 +68,6 @@ def compute(method):
 		return get_prediction(sentence,'absolute discounting')	
 	else:
 		return None
+	'''
+	return "done"
 
