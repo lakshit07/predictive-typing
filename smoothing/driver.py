@@ -1,28 +1,24 @@
 from methods import *
+import json
 from evaluation import *
-from endpoints import Controller
+from endpoints import Controller, CorsMixin
 import os
 
-class Default(Controller):
+class Default(Controller, CorsMixin):
     def GET(self):
     	compute()
-        return "Welcome to Typing Predictor"
+        data = {"one": 1, "two": 2}
+        json_data = json.dumps(data)
+        return json_data
 
-class Predict(Controller):
+class Predict(Controller, CorsMixin):
     def GET(self):
         return "Enter the parameters"
     
     def POST(self, **kwargs):
-        if kwargs['method'] == "additive":
-            return get_prediction_json(kwargs['sentence'] , 'additive')
-        elif kwargs['method'] == "turing":
-            return get_prediction_json(kwargs['sentence'], 'turing')
-        elif kwargs['method'] == "jelinek mercer":
-            return get_prediction_json(kwargs['sentence'], 'jelinek mercer')
-        elif kwargs['method'] == "witten bell":
-            return get_prediction_json(kwargs['sentence'] ,'witten bell')
-        elif kwargs['method'] == "absolute discounting":
-            return get_prediction_json(kwargs['sentence'] ,'absolute discounting')
-        else:
-            return None
+    	sentence = kwargs['sentence']
+    	sentence = sentence.replace(",", " ")
+    	print(sentence)
+    	print(kwargs['method'])
+    	return get_prediction_json(sentence, kwargs['method'])
 

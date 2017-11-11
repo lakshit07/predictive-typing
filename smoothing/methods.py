@@ -8,6 +8,7 @@ from absolute_discounting import *
 import config
 import time
 import heapq
+import json
 
 def predict(prev_words,method):
 	no_of_words = 10
@@ -67,11 +68,11 @@ def get_prediction_json(sentence,method):
 			prob = additive_smoothen(prev_words,word)
 		elif method=='turing':
 			prob = good_turing(prev_words,word)
-		elif method=='jelinek mercer':
+		elif method=='jelinekmercer':
 			prob = jelinek_mercer(prev_words,word)
-		elif method=='witten bell':
+		elif method=='wittenbell':
 			prob = witten_bell(prev_words , word)
-		elif method == 'absolute discounting':
+		elif method == 'absolutediscounting':
 			prob = absolute_discounting(prev_words, word)	
 		else:
 			pass
@@ -84,7 +85,7 @@ def get_prediction_json(sentence,method):
 		data["words"].append(word)
 		data["predictions"].append(-neg_prob)
 
-return json.dumps(data)	
+	return json.dumps(data)	
 
 
 def compute():

@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <title>Typing Predictor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+         <script type="text/javascript">
+            function process(){
+                document.getElementById("preprocess").value = "Preprocessing data...";
+                console.log("Starting preprocessing");
+                $.ajax(
+                {
+                    type: 'GET',
+                    url: 'http://localhost:8000/',
+                    dataType: 'json',
+                    success: function(data){
+                        console.log("preprocessing done!!");
+                        $('#preprocess').val("Preprocessing done. Ready to predict!")
+                    }
+                });
+            }
+
+            function predict(){
+                var sentence = document.getElementById("sentence").value.toLowerCase();;
+                sentence = sentence.replace(/ /g , ",");
+                var jsonobj = {};
+                jsonobj['sentence'] = sentence;
+                var method = document.getElementById("method").value;
+                jsonobj['method'] = method;
+                $.ajax({
+                    type: 'POST', 
+                    url: 'http://localhost:8000/predict',
+                    data: jsonobj,
+                    dataType: 'json',
+                    success: function(data){
+                        job = JSON.parse(data);
+                        console.log(job);
+                        var str = "";
+                        for(var i = 0 ; i < job['words'].length ; i++){
+                            str += job['words'][i] + " : " + job['predictions'][i].toPrecision(6) + " , ";
+                        }
+                        str = str.slice(0, -3);
+                        var temp = '#' + method; 
+                        $(temp).val(str)    
+                    }
+                });                
+                
+
+            }
+        </script>
+    </head>
+    <body>
+
+        <div class="col-lg-8 col-lg-offset-2">
+
+            <h1>Typing Predictor</h1>
+            <div class="row">
+            <div class="col-md-6">
+                <input type="button" onclick="process();"class="btn btn-success btn-send" value="Preprocess">
+            </div>
+            <div class="col-md-6">
+            <textarea readonly id="preprocess" name="message" class="form-control" placeholder="Message from server" rows="1" data-error="Please enter some text">
+            </textarea>
+        </div>
+        </div>
+            <hr>
+            <div class="controls">
+                <div class="messages"></div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="form_message">Enter your text here</label>
+                                <textarea id="sentence" name="message" class="form-control" placeholder="Here you go..." rows="2" data-error="Please enter some text">
+                                </textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                 <select id="method">
+                                      <option value="additive">Additive</option>
+                                      <option value="turing">Turing</option>
+                                      <option value="jelinekmercer">Jelinek Mercer</option>
+                                      <option value="wittenbell">Witten Bell</option>
+                                      <option value="absolutediscounting">Absolute Discounting</option>
+                                </select>     
+                            </div>
+                            <div class="col-md-6">
+                            <input type="button" onclick="predict();"class="btn btn-success btn-send" value="Predict">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="form_message">Additive</label>
+                                <textarea readonly id="additive" name="message" class="form-control" placeholder="Additive predictions" rows="2" data-error="Please enter some text">
+                                </textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                         <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="form_message">Turing</label>
+                                <textarea readonly id="turing" name="message" class="form-control" placeholder="Turing predictions" rows="2" data-error="Please enter some text">
+                                </textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                         <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="form_message">Jelinek Mercer</label>
+                                <textarea readonly id="jelinekmercer" name="message" class="form-control" placeholder="Jelinek Mercer predictions" rows="2" data-error="Please enter some text">
+                                </textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                         <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="form_message">Witten Bell</label>
+                                <textarea readonly id="wittenbell" name="message" class="form-control" placeholder="Witten Bell predictions" rows="2" data-error="Please enter some text">
+                                </textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                         <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="form_message">Absolute Discounting</label>
+                                <textarea readonly id="absolutediscounting" name="message" class="form-control" placeholder="Absolute Discounting predictions" rows="2" data-error="Please enter some text">
+                                </textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>    
+        </div>
+       
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </body>
+</html>
