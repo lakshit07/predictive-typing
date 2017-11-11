@@ -6,7 +6,7 @@ def get_counts(foldername):
 	for fn in os.listdir(foldername):
 		filename = foldername+"/"+fn
 		f = open(filename,'r')
-		print "Processing file ",filename
+		print("Processing file ",filename)
 		for sentence in f:
 			split_sentence = re.split(regexPattern,sentence)
 			prev_word = prev2_word = ''
@@ -27,10 +27,10 @@ def get_counts(foldername):
 				prev_word = word
 		f.close()
 
-	for (key,value) in unigram.iteritems():
+	for (key,value) in unigram.items():
 		count_unigram[value] += 1
-	for (key,value) in bigram.iteritems():
+	for (key,value) in bigram.items():
 		count_bigram[value] += 1
-	for (key,value) in trigram.iteritems():
+	for (key,value) in trigram.items():
 		count_trigram[value] += 1
 	config.voc_size = len(unigram)
