@@ -12,6 +12,6 @@ def good_turing(prev_words,cur_word):
 	nr1 = count_trigram[r+1]
 	new_r = (float(r+1)*nr1)/nr
 	N = 0
-	for (key,value) in count_trigram.iteritems():
+	for (key,value) in count_trigram.items():
 		N += (key*value)
 	return float(new_r)/N
