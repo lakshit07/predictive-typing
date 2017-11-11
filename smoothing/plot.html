@@ -1,0 +1,299 @@
+<html>
+<head>
+<title>Evaluation of Prediction techniques</title>
+
+<script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+<script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js?cacheBust=56"></script>
+<script type="text/javascript">
+  FusionCharts.ready(function(){
+
+    var fusioncharts1 = new FusionCharts({
+    type: 'msline',
+    renderAt: 'first',
+    width: '700',
+    height: '700',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "caption": "Evaluation of prediction techniques",
+            "subCaption": "Cross Entropy",
+            "captionFontSize": "14",
+            "subcaptionFontSize": "14",
+            "subcaptionFontBold": "1",
+            "paletteColors": "#0075c2,#1aaf5d",
+            "bgcolor": "#ffffff",
+            "showBorder": "1",
+            "showShadow": "1",
+            "showCanvasBorder": "1",
+            "usePlotGradientColor": "1",
+            "legendBorderAlpha": "1",
+            "legendShadow": "1",
+            "showAxisLines": "1",
+            "showAlternateHGridColor": "1",
+            "divlineThickness": "1",
+            "divLineIsDashed": "1",
+            "divLineDashLen": "1",
+            "divLineGapLen": "1",
+            "xAxisName": "Document",
+            "yAxisName": "Cross Entropy",
+            "showValues": "0"
+        },
+        "categories": [{
+            "category": [{
+                "label": "D1"
+            },{
+                "vline": "true",
+                "lineposition": "0",
+                "color": "#6baa01",
+                "labelHAlign": "center",
+                "labelPosition": "0",
+                "label": "From Domain",
+                "dashed": "1"
+            }, {
+                "label": "D2"
+            }, {
+                "vline": "true",
+                "lineposition": "0",
+                "color": "#6baa01",
+                "labelHAlign": "center",
+                "labelPosition": "0",
+                "label": "From Domain",
+                "dashed": "1"
+            }, {
+                "label": "D3"
+            },{
+                "vline": "true",
+                "lineposition": "0",
+                "color": "#6baa01",
+                "labelHAlign": "center",
+                "labelPosition": "0",
+                "label": "Out of Domain",
+                "dashed": "1"
+            }, {
+                "label": "D4"
+            }, {
+                "vline": "true",
+                "lineposition": "0",
+                "color": "#6baa01",
+                "labelHAlign": "center",
+                "labelPosition": "0",
+                "label": "Out of Domain",
+                "dashed": "1"
+            }]
+        }],
+        "dataset": [{
+            "seriesname": "Additive",
+            "data": [{
+                "value": "1"
+            }, {
+                "value": "2"
+            }, {
+                "value": "3"
+            }, {
+                "value": "4"
+            }]
+        }, {
+            "seriesname": "Turing",
+            "data": [{
+                "value": "4"
+            }, {
+                "value": "3"
+            }, {
+                "value": "2"
+            }, {
+                "value": "1"
+            }]
+        }, {
+            "seriesname": "Jelinek Mercer",
+            "data": [{
+                "value": "2"
+            }, {
+                "value": "1"
+            }, {
+                "value": "4"
+            }, {
+                "value": "3"
+            }]
+        }, {
+            "seriesname": "Witten Bell",
+            "data": [{
+                "value": "3"
+            }, {
+                "value": "4"
+            }, {
+                "value": "1"
+            }, {
+                "value": "2"
+            }]
+        }, {
+            "seriesname": "Absolute Discounting",
+            "data": [{
+                "value": "2"
+            }, {
+                "value": "4"
+            }, {
+                "value": "1"
+            }, {
+                "value": "3"
+            }]
+        }]
+    }
+}
+);
+
+var fusioncharts2 = new FusionCharts({
+    type: 'msline',
+    renderAt: 'second',
+    width: '700',
+    height: '700',
+    dataFormat: 'json',
+    dataSource: {
+        "chart": {
+            "caption": "Evaluation of prediction techniques",
+            "subCaption": "Perplexity",
+            "captionFontSize": "14",
+            "subcaptionFontSize": "14",
+            "subcaptionFontBold": "1",
+            "paletteColors": "#0075c2,#1aaf5d",
+            "bgcolor": "#ffffff",
+            "showBorder": "1",
+            "showShadow": "1",
+            "showCanvasBorder": "1",
+            "usePlotGradientColor": "1",
+            "legendBorderAlpha": "1",
+            "legendShadow": "1",
+            "showAxisLines": "1",
+            "showAlternateHGridColor": "1",
+            "divlineThickness": "1",
+            "divLineIsDashed": "1",
+            "divLineDashLen": "1",
+            "divLineGapLen": "1",
+            "xAxisName": "Document",
+            "yAxisName": "Perplexity",
+            "showValues": "0"
+        },
+        "categories": [{
+            "category": [{
+                "label": "D1"
+            },{
+                "vline": "true",
+                "lineposition": "0",
+                "color": "#6baa01",
+                "labelHAlign": "center",
+                "labelPosition": "0",
+                "label": "From Domain",
+                "dashed": "1"
+            }, {
+                "label": "D2"
+            }, {
+                "vline": "true",
+                "lineposition": "0",
+                "color": "#6baa01",
+                "labelHAlign": "center",
+                "labelPosition": "0",
+                "label": "From Domain",
+                "dashed": "1"
+            }, {
+                "label": "D3"
+            },{
+                "vline": "true",
+                "lineposition": "0",
+                "color": "#6baa01",
+                "labelHAlign": "center",
+                "labelPosition": "0",
+                "label": "Out of Domain",
+                "dashed": "1"
+            }, {
+                "label": "D4"
+            }, {
+                "vline": "true",
+                "lineposition": "0",
+                "color": "#6baa01",
+                "labelHAlign": "center",
+                "labelPosition": "0",
+                "label": "Out of Domain",
+                "dashed": "1"
+            }]
+        }],
+        "dataset": [{
+            "seriesname": "Additive",
+            "data": [{
+                "value": "1"
+            }, {
+                "value": "2"
+            }, {
+                "value": "3"
+            }, {
+                "value": "4"
+            }]
+        }, {
+            "seriesname": "Turing",
+            "data": [{
+                "value": "4"
+            }, {
+                "value": "3"
+            }, {
+                "value": "2"
+            }, {
+                "value": "1"
+            }]
+        }, {
+            "seriesname": "Jelinek Mercer",
+            "data": [{
+                "value": "2"
+            }, {
+                "value": "1"
+            }, {
+                "value": "4"
+            }, {
+                "value": "3"
+            }]
+        }, {
+            "seriesname": "Witten Bell",
+            "data": [{
+                "value": "3"
+            }, {
+                "value": "4"
+            }, {
+                "value": "1"
+            }, {
+                "value": "2"
+            }]
+        }, {
+            "seriesname": "Absolute Discounting",
+            "data": [{
+                "value": "2"
+            }, {
+                "value": "4"
+            }, {
+                "value": "1"
+            }, {
+                "value": "3"
+            }]
+        }]
+    }
+}
+);
+
+    fusioncharts1.render();
+    fusioncharts2.render();
+});
+</script>
+<style>
+	#first{
+    width: 700px;
+    float: left;
+    height: 700px;
+	}
+	#second{
+		width: 700px;
+		float: right;
+		height: 700px;
+	}
+</style>
+</head>
+<body>
+  <div id="first">Cross Entropy will load here</div>
+  <div id="second">Perplexity will load here</div>
+</body>
+</html>
