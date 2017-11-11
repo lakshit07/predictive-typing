@@ -1,4 +1,5 @@
 from methods import *
+from evaluation import *
 from endpoints import Controller
 import os
 
@@ -13,15 +14,15 @@ class Predict(Controller):
     
     def POST(self, **kwargs):
         if kwargs['method'] == "additive":
-            return get_prediction(kwargs['sentence'] , 'additive')
+            return get_prediction_json(kwargs['sentence'] , 'additive')
         elif kwargs['method'] == "turing":
-            return get_prediction(kwargs['sentence'], 'turing')
+            return get_prediction_json(kwargs['sentence'], 'turing')
         elif kwargs['method'] == "jelinek mercer":
-            return get_prediction(kwargs['sentence'], 'jelinek mercer')
+            return get_prediction_json(kwargs['sentence'], 'jelinek mercer')
         elif kwargs['method'] == "witten bell":
-            return get_prediction(kwargs['sentence'] ,'witten bell')
+            return get_prediction_json(kwargs['sentence'] ,'witten bell')
         elif kwargs['method'] == "absolute discounting":
-            return get_prediction(kwargs['sentence'] ,'absolute discounting')
+            return get_prediction_json(kwargs['sentence'] ,'absolute discounting')
         else:
             return None
 
