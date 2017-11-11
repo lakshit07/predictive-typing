@@ -3,8 +3,8 @@
         <title>Typing Predictor</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <link href="bootstrap.css" rel="stylesheet">
+        <link href='font.css' rel='stylesheet' type='text/css'>
          <script type="text/javascript">
             function process(){
                 document.getElementById("preprocess").value = "Preprocessing data...";
@@ -45,8 +45,10 @@
                         $(temp).val(str)    
                     }
                 });                
-                
+            }
 
+            function evaluate(){
+                
             }
         </script>
     </head>
@@ -62,7 +64,7 @@
             <div class="col-md-6">
             <textarea readonly id="preprocess" name="message" class="form-control" placeholder="Message from server" rows="1" data-error="Please enter some text">
             </textarea>
-        </div>
+            </div>
         </div>
             <hr>
             <div class="controls">
@@ -76,7 +78,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                  <select id="method">
                                       <option value="additive">Additive</option>
                                       <option value="turing">Turing</option>
@@ -85,8 +87,11 @@
                                       <option value="absolutediscounting">Absolute Discounting</option>
                                 </select>     
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                             <input type="button" onclick="predict();"class="btn btn-success btn-send" value="Predict">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="button" onclick="evaluate();"class="btn btn-success btn-send" value="Evaluate">
                             </div>
                         </div>
                         <div class="col-md-12">
