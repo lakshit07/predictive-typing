@@ -24,13 +24,9 @@
                     }
                 });
             }
-
-            function predict(){
-                var sentence = document.getElementById("sentence").value.toLowerCase();;
-                sentence = sentence.replace(/ /g , ",");
+            function requestServer(sentence, method){
                 var jsonobj = {};
                 jsonobj['sentence'] = sentence;
-                var method = document.getElementById("method").value;
                 jsonobj['method'] = method;
                 $.ajax({
                     type: 'POST', 
@@ -46,9 +42,24 @@
                         }
                         str = str.slice(0, -3);
                         var temp = '#' + method; 
-                        $(temp).val(str)    
+                        $(temp).val(str);
                     }
                 });                
+            }
+            function predict(){
+                var sentence = document.getElementById("sentence").value.toLowerCase();;
+                sentence = sentence.replace(/ /g , ",");
+                var method = document.getElementById("method").value;
+                if(method == 'all'){
+                    var methodsName = ["additive", "turing", "jelinekmercer", "wittenbell", "absolutediscounting"];
+                    for(var i in methodsName){
+                        requestServer(sentence, methodsName[i]);
+                    }
+                }
+                else{
+                    requestServer(sentence, method);
+                }
+                
             }
 
         </script>
@@ -73,14 +84,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="form_message">Enter your text here</label>
-                                <textarea id="sentence" name="message" class="form-control" placeholder="Here you go..." rows="2" data-error="Please enter some text">
-                                </textarea>
+                                <textarea id="sentence" name="message" class="form-control" placeholder="Here you go..." rows="2" data-error="Please enter some text"></textarea>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                  <select id="method">
+                                      <option value="all">All</option>
                                       <option value="additive">Additive</option>
                                       <option value="turing">Turing</option>
                                       <option value="jelinekmercer">Jelinek Mercer</option>
