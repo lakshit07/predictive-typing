@@ -10,6 +10,7 @@ import time
 import heapq
 import json
 
+
 def predict(prev_words,method):
 	no_of_words = 10
 	pq = []
@@ -89,24 +90,11 @@ def get_prediction_json(sentence,method):
 
 
 def compute():
-	start_time=time.time()
-	get_counts("../data")
-	print("Obtaining counts: ",time.time()-start_time," seconds")
-	print("Voc size: ",config.voc_size)
-	#sentence = "these are the experiences that write our story and shape our lives" 
-	'''	
-	if method=="additive":
-		return get_prediction(sentence,'additive')
-	elif method=="turing":
-		return get_prediction(sentence,'turing')
-	elif method=="jelinek mercer":
-		return get_prediction(sentence,'jelinek mercer')
-	elif method=="witten bell":
-		return get_prediction(sentence,'witten bell')
-	elif method == "absolute discounting":
-		return get_prediction(sentence,'absolute discounting')	
-	else:
-		return None
-	'''
-	return "done"
+	if len(unigram) == 0:
+		start_time=time.time()
+		get_counts("../data")
+		print("Obtaining counts: ",time.time()-start_time," seconds")
+		print("Voc size: ",config.voc_size)
+		comp = True
+		return "done"
 

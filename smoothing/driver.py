@@ -6,10 +6,10 @@ import os
 
 class Default(Controller, CorsMixin):
     def GET(self):
-    	compute()
-        data = {"one": 1, "two": 2}
-        json_data = json.dumps(data)
-        return json_data
+   		compute()
+   		data = {"one": 1, "two": 2}
+		json_data = json.dumps(data)
+		return json_data
 
 class Predict(Controller, CorsMixin):
     def GET(self):
