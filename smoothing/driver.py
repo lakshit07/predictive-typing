@@ -22,3 +22,9 @@ class Predict(Controller, CorsMixin):
     	print(kwargs['method'])
     	return get_prediction_json(sentence, kwargs['method'])
 
+class Evaluate(Controller, CorsMixin):
+    def GET(self):
+        data = {"one": 1, "two": 2}
+        json_data = json.dumps(data)
+        return json_data
+
