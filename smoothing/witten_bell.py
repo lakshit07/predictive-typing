@@ -12,6 +12,9 @@ def witten_bell(prev_words, cur_word):
         num = count_distinct_bi[prev_words[0] + ' ' + prev_words[1]]
         den = num + bigram[prev_words[0] + ' ' + prev_words[1]]
 
+    if den == 0:
+        return 0
+            
     const = 1 - float(num)/den
     ans = const*cond_prob(prev_words,cur_word)+(1-const)*witten_bell(prev_words[1:],cur_word)
     return ans

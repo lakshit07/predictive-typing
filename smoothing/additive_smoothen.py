@@ -1,3 +1,4 @@
+import config
 from config import *
 
 def additive_smoothen(prev_words,cur_word):
@@ -11,5 +12,5 @@ def additive_smoothen(prev_words,cur_word):
 	denom = bigram[partial_word]
 	delta = 1
 	num += delta
-	denom += (delta*voc_size)
+	denom += (delta*config.voc_size)
 	return float(num)/denom
