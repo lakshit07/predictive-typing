@@ -24,7 +24,10 @@ class Predict(Controller, CorsMixin):
 
 class Evaluate(Controller, CorsMixin):
     def GET(self):
-        data = {"one": 1, "two": 2}
-        json_data = json.dumps(data)
+        d = {}
+        l = evaluation_all("test")
+        d['crossentropy'] = l[0]
+        d['perplexity'] = l[1]
+        json_data = json.dumps(d)
         return json_data
 
