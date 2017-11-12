@@ -6,6 +6,11 @@
         <link href="bootstrap.css" rel="stylesheet">
         <link href='font.css' rel='stylesheet' type='text/css'>
          <script type="text/javascript">
+            function popitup(url) {
+                newwindow=window.open(url,'name','height=200,width=150');
+                 if (window.focus) {newwindow.focus()}
+                return false;
+    }
             function process(){
                 document.getElementById("preprocess").value = "Preprocessing data...";
                 console.log("Starting preprocessing");
@@ -87,7 +92,7 @@
                             <input type="button" onclick="predict();"class="btn btn-success btn-send" value="Predict">
                             </div>
                             <div class="col-md-4">
-                                <input type="button" onclick="location.href = './plot.html';" class="btn btn-success btn-send" value="Evaluate">
+                                <input type="button" target="_blank" onclick= "window.open('./plot.html','_blank')" class="btn btn-success btn-send" value="Evaluate">
                             </div>
                         </div>
                         <div class="col-md-12">

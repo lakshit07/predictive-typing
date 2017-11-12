@@ -6,7 +6,17 @@
 <script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js?cacheBust=56"></script>
 <script type="text/javascript">
   FusionCharts.ready(function(){
-  	crossentropy = {
+  	$.ajax({
+  		type: 'GET',
+        url: 'http://localhost:8000/evaluate',
+        dataType: 'json',
+        success: function(data){
+        	job = JSON.parse(data);
+        	ce = job['crossentropy'];
+        	per = job['perplexity'];
+        	console.log(ce);
+        	console.log(per);
+        	crossentropy = {
 			        "chart": {
 			            "caption": "Evaluation of prediction techniques",
 			            "subCaption": "Cross Entropy",
@@ -77,57 +87,57 @@
 			        "dataset": [{
 			            "seriesname": "Additive",
 			            "data": [{
-			                "value": "1"
+			                "value": ce[0][0]
 			            }, {
-			                "value": "2"
+			                "value": ce[0][1]
 			            }, {
-			                "value": "3"
+			                "value": ce[0][2]
 			            }, {
-			                "value": "4"
+			                "value": ce[0][3]
 			            }]
 			        }, {
 			            "seriesname": "Turing",
 			            "data": [{
-			                "value": "4"
+			                "value": ce[1][0]
 			            }, {
-			                "value": "3"
+			                "value": ce[1][1]
 			            }, {
-			                "value": "2"
+			                "value": ce[1][2]
 			            }, {
-			                "value": "1"
+			                "value": ce[1][3]
 			            }]
 			        }, {
 			            "seriesname": "Jelinek Mercer",
 			            "data": [{
-			                "value": "2"
+			                "value": ce[2][0]
 			            }, {
-			                "value": "1"
+			                "value": ce[2][1]
 			            }, {
-			                "value": "4"
+			                "value": ce[2][2]
 			            }, {
-			                "value": "3"
+			                "value": ce[2][3]
 			            }]
 			        }, {
 			            "seriesname": "Witten Bell",
 			            "data": [{
-			                "value": "3"
+			                "value": ce[3][0]
 			            }, {
-			                "value": "4"
+			                "value": ce[3][1]
 			            }, {
-			                "value": "1"
+			                "value": ce[3][2]
 			            }, {
-			                "value": "2"
+			                "value": ce[3][3]
 			            }]
 			        }, {
 			            "seriesname": "Absolute Discounting",
 			            "data": [{
-			                "value": "2"
+			                "value": ce[4][0]
 			            }, {
-			                "value": "4"
+			                "value": ce[4][1]
 			            }, {
-			                "value": "1"
+			                "value": ce[4][2]
 			            }, {
-			                "value": "3"
+			                "value": ce[4][3]
 			            }]
 			        }]
 			    };
@@ -203,67 +213,64 @@
 		        "dataset": [{
 		            "seriesname": "Additive",
 		            "data": [{
-		                "value": "1"
+		                "value": per[0][0]
 		            }, {
-		                "value": "2"
+		                "value": per[0][1]
 		            }, {
-		                "value": "3"
+		                "value": per[0][2]
 		            }, {
-		                "value": "4"
+		                "value": per[0][3]
 		            }]
 		        }, {
 		            "seriesname": "Turing",
 		            "data": [{
-		                "value": "4"
+		                "value": per[1][0]
 		            }, {
-		                "value": "3"
+		                "value": per[1][1]
 		            }, {
-		                "value": "2"
+		                "value": per[1][2]
 		            }, {
-		                "value": "1"
+		                "value": per[1][3]
 		            }]
 		        }, {
 		            "seriesname": "Jelinek Mercer",
 		            "data": [{
-		                "value": "2"
+		                "value": per[2][0]
 		            }, {
-		                "value": "1"
+		                "value": per[2][1]
 		            }, {
-		                "value": "4"
+		                "value": per[2][2]
 		            }, {
-		                "value": "3"
+		                "value": per[2][3]
 		            }]
 		        }, {
 		            "seriesname": "Witten Bell",
 		            "data": [{
-		                "value": "3"
+		                "value": per[3][0]
 		            }, {
-		                "value": "4"
+		                "value": per[3][1]
 		            }, {
-		                "value": "1"
+		                "value": per[3][2]
 		            }, {
-		                "value": "2"
+		                "value": per[3][3]
 		            }]
 		        }, {
 		            "seriesname": "Absolute Discounting",
 		            "data": [{
-		                "value": "2"
+		                "value": per[4][0]
 		            }, {
-		                "value": "4"
+		                "value": per[4][1]
 		            }, {
-		                "value": "1"
+		                "value": per[4][2]
 		            }, {
-		                "value": "3"
+		                "value": per[4][3]
 		            }]
 		        }]
 		    };		    
 
+		    console.log(crossentropy);
+		    console.log(perplexity);
 
-  	$.ajax({
-  		type: 'GET',
-        url: 'http://localhost:8000/evaluate',
-        dataType: 'json',
-        success: function(data){
 			var fusioncharts1 = new FusionCharts({
 			    type: 'msline',
 			    renderAt: 'first',
