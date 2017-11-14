@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Typing Predictor</title>
+        <title>Typing Predictor and Semantic Similarity Analyzer</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="bootstrap.css" rel="stylesheet">
@@ -149,10 +149,45 @@
                                 </textarea>
                                 <div class="help-block with-errors"></div>
                             </div>
+                    <br><hr><br>
                         </div>
-
+                <div class="row">
+                    <br><hr><br>
+                    <h2>Semantic Similarity Analyzer</h2>
+                </div>    
+                 <div class="row">
+                    <br>
+                    <div class="col-md-4">
+                        <input type="button" onclick="" class="btn btn-success btn-send" value="Load">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="button" onclick="" class="btn btn-success btn-send" value="Remove">
+                    </div>
+                    <div class="col-md-4">
+                    <textarea readonly id="preprocess" name="message" class="form-control" placeholder="Message from server" rows="1" data-error="Please enter some text">
+                    </textarea>
                 </div>
-            </div>    
+                <br><hr><br>    
+                <div class="row">
+                     <div class="col-md-6">
+                     <label for="form_message">Question 1</label>
+                        <textarea id="sentence1" name="message" class="form-control" placeholder="Enter Question 1" rows="2"></textarea>
+                    </div>
+                     <div class="col-md-6">
+                    <label for="form_message">Question 2</label>
+                    <textarea id="sentence2" name="message" class="form-control" placeholder="Enter Question 2" rows="2"></textarea>
+                     </div>
+                </div>
+                <div class="row">
+                    <br>
+                      <div class="col-md-4">
+                        <input type="button" onclick="" class="btn btn-success btn-send" value="Calculate">
+                    </div>
+                    <div class="col-md-4">
+                    <textarea readonly id="similarity" name="message" class="form-control" rows="1"></textarea>
+                     </div>
+                     <br><br><br><hr>
+                </div>
         </div>
        
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
