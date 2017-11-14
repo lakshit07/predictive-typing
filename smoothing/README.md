@@ -12,7 +12,7 @@ make clean
 make all
 ```
 
-* To run the client either open *index.html* or hit  http://localhost/8000 on the browser
+* To run the client either open *index.html* on the browser
 
 
 
