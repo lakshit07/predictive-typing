@@ -3,6 +3,8 @@ import json
 from evaluation import *
 from endpoints import Controller, CorsMixin
 import os
+import sys
+from resource import *
 
 class Default(Controller, CorsMixin):
     def GET(self):
@@ -30,4 +32,29 @@ class Evaluate(Controller, CorsMixin):
         d['perplexity'] = l[1]
         json_data = json.dumps(d)
         return json_data
+
+class Semantic(Controller, CorsMixin):
+    def GET(self):
+        load()
+        data = {"one": 1, "two": 2}
+        json_data = json.dumps(data)
+        return json_data
+
+    def POST(self, **kwargs):
+        sentence1 = kwargs['sentence1']
+        sentence2 = kwargs['sentence2']
+        print sentence1
+        print sentence2
+        a = calc(sentence1, sentence2)
+        d = {}
+        if a < 0.5:
+            d['comment'] = "Not Duplicate : "
+        else:
+            d['comment'] = "Duplicate : "    
+        d['score'] = a
+        jsob = json.dumps(d)
+        print "json object = " , jsob
+        return jsob
+
+
 
