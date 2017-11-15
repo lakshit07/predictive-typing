@@ -1,1 +1,6 @@
 data/
+project/GoogleNews-vectors-negative300.bin.gz
+project/model
+project/emb.npy
+project/inverseVocab.txt
+project/vocab.txt

@@ -6,11 +6,21 @@
         <link href="bootstrap.css" rel="stylesheet">
         <link href='font.css' rel='stylesheet' type='text/css'>
          <script type="text/javascript">
-            function popitup(url) {
-                newwindow=window.open(url,'name','height=200,width=150');
-                 if (window.focus) {newwindow.focus()}
-                return false;
-    }
+         function semantic_load(){
+            document.getElementById("loadmodel").value = "Loading model weights...";
+            console.log("Loading model weights");
+            $.ajax(
+            {
+                type: 'GET',
+                url: 'http://localhost:8000/semantic',
+                datatype: 'json',
+                success: function(data){
+                    $('#loadmodel').val("Loading complete. Ready to analyze!")
+                }
+            });
+
+         }
+            
             function process(){
                 document.getElementById("preprocess").value = "Preprocessing data...";
                 console.log("Starting preprocessing");
@@ -47,7 +57,7 @@
                 });                
             }
             function predict(){
-                var sentence = document.getElementById("sentence").value.toLowerCase();;
+                var sentence = document.getElementById("sentence").value.toLowerCase();
                 sentence = sentence.replace(/ /g , ",");
                 var method = document.getElementById("method").value;
                 if(method == 'all'){
@@ -58,8 +68,28 @@
                 }
                 else{
                     requestServer(sentence, method);
-                }
-                
+                } 
+            }
+
+            function analyze(){
+                var sentence1 = document.getElementById("sentence1").value;
+                var sentence2 = document.getElementById("sentence2").value;
+                dataobj = {"sentence1" : sentence1 , "sentence2" : sentence2};
+                $.ajax({
+                    type: 'POST', 
+                    url: 'http://localhost:8000/semantic',
+                    data: dataobj,
+                    dataType: 'json',
+                    success: function(data){
+                        console.log(data)
+                        job = JSON.parse(data);
+                        console.log(job);
+                        var ans = job['comment'].concat(job['score']);
+                        console.log(ans);
+                        $('#siml').val(ans);
+                    }
+                });      
+
             }
 
         </script>
@@ -157,14 +187,11 @@
                 </div>    
                  <div class="row">
                     <br>
-                    <div class="col-md-4">
-                        <input type="button" onclick="" class="btn btn-success btn-send" value="Load">
+                    <div class="col-md-6">
+                        <input type="button" onclick="semantic_load()" class="btn btn-success btn-send" value="Load">
                     </div>
-                    <div class="col-md-4">
-                        <input type="button" onclick="" class="btn btn-success btn-send" value="Remove">
-                    </div>
-                    <div class="col-md-4">
-                    <textarea readonly id="preprocess" name="message" class="form-control" placeholder="Message from server" rows="1" data-error="Please enter some text">
+                    <div class="col-md-6">
+                    <textarea readonly id="loadmodel" name="message" class="form-control" placeholder="Message from server" rows="1" data-error="Please enter some text">
                     </textarea>
                 </div>
                 <br><hr><br>    
@@ -181,10 +208,10 @@
                 <div class="row">
                     <br>
                       <div class="col-md-4">
-                        <input type="button" onclick="" class="btn btn-success btn-send" value="Calculate">
+                        <input type="button" onclick="analyze()" class="btn btn-success btn-send" value="Analyze">
                     </div>
                     <div class="col-md-4">
-                    <textarea readonly id="similarity" name="message" class="form-control" rows="1"></textarea>
+                    <textarea readonly id="siml" name="message" class="form-control" rows="1"></textarea>
                      </div>
                      <br><br><br><hr>
                 </div>
