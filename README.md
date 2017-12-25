@@ -1,6 +1,6 @@
 # CS F469 Information Retrieval
 
-## Predictive Typing System
+## Predictive Typing System and Semantic Similarity Analyzer
 
 **Brief Description:**  
 The project involves building a predictive typing system for an arbitrary language using two approaches. 
